@@ -1,4 +1,4 @@
-# MaintenanceCalorieCalc
+# Maintenance Calorie Calculator
 Created by Tanzim Amin
 
 A simple program that can determine a person's maintenance calories.
