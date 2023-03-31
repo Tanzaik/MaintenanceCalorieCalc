@@ -2,107 +2,41 @@
 #include <iostream>
 using namespace std;
 
-int main()
-{
-   string male;
-   male = "male";
-   string female;
-   female = "female";
-   string cutting;
-   cutting = "cutting";
-   string bulking;
-   bulking = "bulking";
-   string maintaining;
-   string op;
-   double numAge;
-   double num1, num2;
-   double num3;
-   double numbero;
-   double mod1;
-   double mod2;
-   double num4;
-   double x;
-   string od;
-   double val1, val2, val3, cut1, cut2, cut3;
-   
-   cout << "Enter your age" << endl;
-   cin >> numAge;
-   
-   if (numAge <= 5) {
-       
-       cout << "Invalid Age" << endl;
-       return 0;
-   }
-   
-   if (numAge >= 99) {
-       
-       cout << "Invalid Age" << endl;
-       return 0;
-   }
-   
-   
-   cout << "Enter your height (cm)" << endl;
-   cin >> num1;
-   
-   
-   
-   cout << "Enter weight (kg)" << endl;
-   cin >> num3;
-   
-   numbero = num3 * 2.2046;
-   
-   
-   
-   cout << "Scale of 1-5, how active are you? (1 = no exercise, 5 = heavily active) " << endl;
-   cin >> num4;
-   
-   
-   if ((num4 = '1')) {
-       x = num4;
-       x = 1.2;
-   }
-   if ((num4 = '2')) {
-       x = num4;
-       x = 1.40;
-   }
-   if ((num4 = '3')) {
-       x = num4;
-       x = 1.55;
-   }
-   if ((num4 = '4')) {
-       x = num4;
-       x = 1.65;
-   }
-   if ((num4 = '5')) {
-       x = num4;
-       x = 1.725;
-   }
-   else{
-               cout << "Undefined " << endl;
-                return 0;
-   }
-   
-   
-   cout << "Enter your gender (male/female)" << endl;
-   cin >> op;
-   
-   if (op == "male"){
-     
-        val1 = ((10 * num3) + (6.25 * num1) - ( 5 * numAge) - 161) * x;
-        cout << "Your maintenance calories is " << val1;
- }
-   
- else if (op == "female") {
-     
-        val2 = ((10 * num3) + (6.25 * num1) - ( 5 * numAge) + 5) * x;
-        cout << "Your maintenance calories is " << val2;
- }
- 
- else {
-     cout << "Error, Try again" << endl;
-     return 0;
- }
-   
- 
-   return 0;
+// Set the Harris-Benedict constants
+const double MALE_CONSTANT = 88.36;
+const double FEMALE_CONSTANT = 447.6;
+const double HEIGHT_CONSTANT = 4.7;
+const double WEIGHT_CONSTANT = 13.7;
+const double AGE_CONSTANT = 5.0;
+
+int main() {
+    // Declare variables for the user's information
+    char gender;
+    int age;
+    double height, weight, activity_level;
+
+    // Ask for the user's information
+    cout << "Enter your gender (M or F): ";
+    cin >> gender;
+    cout << "Enter your age: ";
+    cin >> age;
+    cout << "Enter your height in cm: ";
+    cin >> height;
+    cout << "Enter your weight in kg: ";
+    cin >> weight;
+    cout << "Enter your activity level (1.2 for sedentary, 1.375 for light activity, 1.55 for moderate activity, 1.725 for very active, or 1.9 for extra active): ";
+    cin >> activity_level;
+
+    // Calculate the maintenance calories based on the user's information
+    double maintenance_calories;
+    if (gender == 'M') {
+        maintenance_calories = (MALE_CONSTANT + (WEIGHT_CONSTANT * weight) + (HEIGHT_CONSTANT * height) - (AGE_CONSTANT * age)) * activity_level;
+    } else {
+        maintenance_calories = (FEMALE_CONSTANT + (WEIGHT_CONSTANT * weight) + (HEIGHT_CONSTANT * height) - (AGE_CONSTANT * age)) * activity_level;
+    }
+
+    // Print the calculated maintenance calories
+    cout << "Your maintenance calories are: " << maintenance_calories << endl;
+
+    return 0;
 }
